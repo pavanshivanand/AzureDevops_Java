@@ -30,8 +30,13 @@ steps:
     PathtoPublish: "$(Build.ArtifactStagingDirectory)"
     ArtifactName: "drop"
     publishLocation: "Container"
+- task: DownloadBuildArtifacts@1
+  inputs:
+    buildType: 'current'
+    downloadType: 'specific'
+    downloadPath: '$(System.ArtifactsDirectory)'
 - task: OctopusPack@4
   inputs:
     PackageId: 'firstjavapackage'
     PackageFormat: 'zip'
-    SourcePath: '$(Build.ArtifactStagingDirectory)\drop\s\target'
+    SourcePath: '$(System.ArtifactsDirectory)\drop\s\target'
