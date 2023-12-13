@@ -29,7 +29,7 @@ steps:
   inputs:
     PackageId: 'firstjavapackage'
     PackageFormat: 'Zip'
-    SourcePath: '$(build.artifactstagingdirectory)'
+    SourcePath: '$(build.artifactstagingdirectory)\s\target'
 - task: OctopusPush@6
   inputs:
     OctoConnectedServiceName: 'demo'
