@@ -32,3 +32,9 @@ steps:
     PackageIds: 'firstjavapackage'
     PackageVersion: '$(Build.BuildNumber)'
     Replace: 'true'
+- task: OctopusPush@6
+  inputs:
+    OctoConnectedServiceName: 'demo'
+    Space: 'Deafult'
+    Packages: '**/*.war'
+    Replace: 'false'
