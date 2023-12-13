@@ -30,7 +30,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: 'Rename-Item -Path "helloworld.war" -NewName "helloworld.$(Build.BuildId).war"'
-    workingDirectory: '$(build.artifactstagingdirectory)/target'
+    workingDirectory: '$(build.artifactstagingdirectory)/s/target'
 - task: OctopusPush@6
   inputs:
     OctoConnectedServiceName: 'demo'
