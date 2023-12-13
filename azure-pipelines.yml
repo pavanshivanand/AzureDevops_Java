@@ -28,7 +28,7 @@ steps:
 - task: OctopusPack@4
   inputs:
     PackageId: 'firstjavapackage'
-    PackageFormat: 'Zip'
+    PackageFormat: 'war'
     SourcePath: '$(build.ArtifactStagingDirectory)'
 - task: OctopusPush@6
   inputs:
