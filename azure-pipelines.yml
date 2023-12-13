@@ -35,7 +35,7 @@ steps:
   inputs:
     OctoConnectedServiceName: 'demo'
     Space: 'Default'
-    Packages: '$(build.artifactstagingdirectory)/target/helloworld.$(Build.BuildId).war'
+    Packages: '$(build.artifactstagingdirectory)/s/target/helloworld.$(Build.BuildId).war'
     Replace: 'false'
 - task: OctopusCreateRelease@6
   inputs:
