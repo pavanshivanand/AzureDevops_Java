@@ -25,6 +25,11 @@ steps:
     SourceFolder: '$(agent.builddirectory)'
     Contents: '**/*.war'
     TargetFolder: '$(build.artifactstagingdirectory)'
+- task: OctopusPack@4
+  inputs:
+    PackageId: 'firstjavapackage'
+    PackageFormat: 'Zip'
+    SourcePath: '$(build.ArtifactStagingDirectory)'
 - task: OctopusPush@6
   inputs:
     OctoConnectedServiceName: 'demo'
@@ -35,11 +40,11 @@ steps:
   inputs:
     OctoConnectedServiceName: 'demo'
     Space: 'Default'
-    Project: 'firstOctopus'
+    Project: 'octopusjava'
 - task: OctopusDeployRelease@6
   inputs:
     OctoConnectedServiceName: 'demo'
     Space: 'Default'
-    Project: 'firstOctopus'
+    Project: 'octopusjava'
     ReleaseNumber: '0.0.1'
     Environments: 'Development'
