@@ -39,4 +39,4 @@ steps:
   inputs:
     PackageId: 'firstjavapackage'
     PackageFormat: 'zip'
-    SourcePath: '$(System.ArtifactsDirectory)\drop\s\target'
+    SourcePath: '$(System.ArtifactsDirectory)\drop'
