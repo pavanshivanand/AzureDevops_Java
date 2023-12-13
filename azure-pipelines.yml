@@ -25,26 +25,13 @@ steps:
     SourceFolder: '$(agent.builddirectory)'
     Contents: '**/*.war'
     TargetFolder: '$(build.artifactstagingdirectory)'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+    ArtifactName: "drop"
+    publishLocation: "Container"
 - task: OctopusPack@4
   inputs:
     PackageId: 'firstjavapackage'
-    PackageFormat: 'Zip'
-    SourcePath: '$(build.artifactstagingdirectory)\s\target'
-- task: OctopusPush@6
-  inputs:
-    OctoConnectedServiceName: 'demo'
-    Space: 'Default'
-    Packages: '**/*.zip'
-    Replace: 'false'
-- task: OctopusCreateRelease@6
-  inputs:
-    OctoConnectedServiceName: 'demo'
-    Space: 'Default'
-    Project: 'octopusjava'
-- task: OctopusDeployRelease@6
-  inputs:
-    OctoConnectedServiceName: 'demo'
-    Space: 'Default'
-    Project: 'octopusjava'
-    ReleaseNumber: '0.0.1'
-    Environments: 'Development'
+    PackageFormat: 'war'
+    SourcePath: '$(build.artifactstagingdirectory)'
