@@ -25,16 +25,27 @@ steps:
     SourceFolder: '$(agent.builddirectory)'
     Contents: '**/*.war'
     TargetFolder: '$(build.artifactstagingdirectory)'
-- task: OctopusBuildInformation@6
+
+- task: PowerShell@2
   inputs:
-    OctoConnectedServiceName: 'demo'
-    Space: 'Default'
-    PackageIds: 'firstjavapackage'
-    PackageVersion: '$(Build.BuildNumber)'
-    Replace: 'true'
+    targetType: 'inline'
+    script: 'Rename-Item -Path "helloworld.war" -NewName "helloworld.$(Build.BuildId).war"'
+    workingDirectory: '$(build.artifactstagingdirectory)/target'
 - task: OctopusPush@6
   inputs:
     OctoConnectedServiceName: 'demo'
     Space: 'Default'
-    Packages: '**/*.war'
+    Packages: '$(build.artifactstagingdirectory)/target/helloworld.$(Build.BuildId).war'
     Replace: 'false'
+- task: OctopusCreateRelease@6
+  inputs:
+    OctoConnectedServiceName: 'demo'
+    Space: 'Default'
+    Project: 'octopusjava'
+- task: OctopusDeployRelease@6
+  inputs:
+    OctoConnectedServiceName: 'demo'
+    Space: 'Default'
+    Project: 'octopusjava'
+    ReleaseNumber: '0.0.1'
+    Environments: 'Development'
