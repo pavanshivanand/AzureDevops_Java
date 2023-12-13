@@ -33,5 +33,5 @@ steps:
 - task: OctopusPack@4
   inputs:
     PackageId: 'firstjavapackage'
-    PackageFormat: 'zip
-    SourcePath: '$(System.ArtifactsDirectory)\drop'
+    PackageFormat: 'zip'
+    SourcePath: '$(Build.ArtifactStagingDirectory)\drop\s\target'
