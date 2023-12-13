@@ -25,16 +25,11 @@ steps:
     SourceFolder: '$(agent.builddirectory)'
     Contents: '**/*.war'
     TargetFolder: '$(build.artifactstagingdirectory)'
-- task: OctopusPack@4
-  inputs:
-    PackageId: 'firstjavapackage'
-    PackageFormat: 'war'
-    SourcePath: '$(build.ArtifactStagingDirectory)'
 - task: OctopusPush@6
   inputs:
     OctoConnectedServiceName: 'demo'
     Space: 'Default'
-    Packages: '**/*.zip'
+    Packages: '**/*.war'
     Replace: 'false'
 - task: OctopusCreateRelease@6
   inputs:
